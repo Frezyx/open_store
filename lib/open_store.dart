@@ -19,7 +19,7 @@ class OpenStore {
     if (Platform.isIOS) {
       await _openAppStore(appStoreId);
     } else if (Platform.isAndroid) {
-      await _openGooglePlay(appStoreId);
+      await _openGooglePlay(androidAppBundleId);
     } else
       throw PlatformException(code: 'Platform not supported');
   }
