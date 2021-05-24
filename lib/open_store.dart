@@ -3,9 +3,8 @@ library open_store;
 import 'dart:io';
 
 import 'package:flutter/services.dart';
+import 'package:open_store/src/src.dart';
 import 'package:url_launcher/url_launcher.dart';
-
-import 'src/eceptions/common.dart';
 
 class OpenStore {
   OpenStore._();
