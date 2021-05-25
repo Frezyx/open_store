@@ -1,13 +1,33 @@
-# open_store
+# OpenStore
 
-A new Flutter package project.
+😎 Simple flutter package to open app page in store<br>
+😍 Without native platform code
 
-## Getting Started
+# Getting Started
 
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+### Add dependency
+
+```yaml
+dependencies:
+  open_store: ^0.0.2
+```
+
+### Add import package
+
+```dart
+import 'package:open_store/open_store.dart';
+```
+
+### Easy to use
+
+Add method calling when you need open app page in store
+
+```dart
+    OpenStore.instance.open(
+        appStoreId: '1111111111', //Your app id in appstore
+        androidAppBundleId: 'com.example.app' //Your android bundle id
+    );
+```
 
 For help getting started with Flutter, view our 
 [online documentation](https://flutter.dev/docs), which offers tutorials, 
