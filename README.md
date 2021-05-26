@@ -3,6 +3,9 @@
 😎 Simple flutter package to open app page in store<br>
 😍 Without native platform code
 
+* How to open app page in AppStore from Flutter ?
+* How to open app page in GooglePlay from Flutter ? 
+
 # Getting Started
 
 ### Add dependency
