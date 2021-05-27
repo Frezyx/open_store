@@ -26,7 +26,8 @@ class Home extends StatelessWidget {
         child: ElevatedButton(
           onPressed: () {
             OpenStore.instance.open(
-              androidAppBundleId: 'com.frezycode.rhymer',
+              appStoreId: '284815942',
+              androidAppBundleId: 'com.google.android.googlequicksearchbox',
             );
           },
           child: Text('Open store'),
