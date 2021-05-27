@@ -1,3 +1,8 @@
-## [0.0.1] - TODO: Add release date.
+## 0.1.0
 
-* TODO: Describe initial release.
+* Make open method optional parameters
+* Create example
+
+## 0.1.0
+
+* Init package
