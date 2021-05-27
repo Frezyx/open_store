@@ -11,15 +11,29 @@ class OpenStore {
   static OpenStore get instance => _instance;
 
   Future<void> open({
-    required String appStoreId,
-    required String androidAppBundleId,
+    String? appStoreId,
+    String? androidAppBundleId,
   }) async {
     if (Platform.isIOS) {
-      await _openAppStore(appStoreId);
+      await _openIos(appStoreId);
     } else if (Platform.isAndroid) {
-      await _openGooglePlay(androidAppBundleId);
+      await _openAndroid(androidAppBundleId);
     } else
       throw PlatformException(code: 'Platform not supported');
+  }
+
+  Future _openAndroid(String? androidAppBundleId) async {
+    if (androidAppBundleId != null) {
+      await _openGooglePlay(androidAppBundleId);
+    } else
+      throw CantLaunchPageException("androidAppBundleId is not passed");
+  }
+
+  Future _openIos(String? appStoreId) async {
+    if (appStoreId != null) {
+      await _openAppStore(appStoreId);
+    } else
+      throw CantLaunchPageException("appStoreId is not passed");
   }
 
   Future<void> _openAppStore(String androidAppBundleId) async {

@@ -26,7 +26,6 @@ class Home extends StatelessWidget {
         child: ElevatedButton(
           onPressed: () {
             OpenStore.instance.open(
-              appStoreId: '',
               androidAppBundleId: 'com.frezycode.rhymer',
             );
           },
