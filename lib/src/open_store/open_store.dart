@@ -14,6 +14,8 @@ class OpenStore {
     String? appStoreId,
     String? androidAppBundleId,
   }) async {
+    assert(appStoreId != null || androidAppBundleId != null,
+        "You must pass one of this parameters");
     if (Platform.isIOS) {
       await _openIos(appStoreId);
     } else if (Platform.isAndroid) {
