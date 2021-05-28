@@ -1,8 +1,8 @@
 name: open_store
 description: Simple lightweight package to open store page.
-version: 0.2.0
+version: 0.2.1
 author: youngfrezyx@gmail.com
-homepage:
+homepage: https://github.com/Frezyx/open_store
 
 environment:
   sdk: '>=2.12.0 <3.0.0'

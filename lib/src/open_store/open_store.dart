@@ -8,8 +8,18 @@ class OpenStore {
   OpenStore._();
 
   static final OpenStore _instance = OpenStore._();
+
+  /// Returns an instance using the default [OpenStore].
   static OpenStore get instance => _instance;
 
+  /// Main method of this package
+  /// Allows to open your app's page in store by platform
+  ///
+  /// Enabled for Android & iOS
+  /// [PlatformException] will throw if you try using this package in other OS
+  ///
+  /// [CantLaunchPageException] will throw if you don't specify
+  /// app id on Platform that you useing right now
   Future<void> open({
     String? appStoreId,
     String? androidAppBundleId,

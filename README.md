@@ -12,7 +12,7 @@
 
 ```yaml
 dependencies:
-  open_store: ^0.2.0
+  open_store: ^0.2.1
 ```
 
 ### Add import package
@@ -27,8 +27,8 @@ Add method calling when you need open app page in store
 
 ```dart
     OpenStore.instance.open(
-        appStoreId: '1111111111', //Your app id in appstore
-        androidAppBundleId: 'com.example.app' //Your android bundle id
+        appStoreId: '284815942', // AppStore id of your app
+        androidAppBundleId: 'com.google.android.googlequicksearchbox', // Android app bundle package name
     );
 ```
 
