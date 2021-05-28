@@ -1,3 +1,8 @@
+## 0.2.1
+
+* Add comments
+* Fix package analyzer issues
+
 ## 0.2.0
 
 * Make open method optional parameters
