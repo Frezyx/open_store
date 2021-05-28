@@ -1,3 +1,4 @@
+/// Common package exception
 class OpenStoreException implements Exception {
   String cause;
   OpenStoreException(this.cause);

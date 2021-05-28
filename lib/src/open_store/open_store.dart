@@ -8,6 +8,8 @@ class OpenStore {
   OpenStore._();
 
   static final OpenStore _instance = OpenStore._();
+
+  /// Returns an instance using the default [OpenStore].
   static OpenStore get instance => _instance;
 
   /// Main method of this package
