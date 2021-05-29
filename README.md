@@ -6,11 +6,11 @@
 <table>
   <td>
     <p>Android</p>
-    <img src="https://github.com/Frezyx/open_store/blob/main/example/repo/e_android.gif?raw=true" height = 300px>
+    <img src="https://github.com/Frezyx/open_store/blob/main/example/repo/e_android.gif?raw=true" height = 400px>
   </td>
   <td>
     <p>iOS</p>
-    <img src="https://github.com/Frezyx/open_store/blob/main/example/repo/e_ios.gif?raw=true" height = 300px>
+    <img src="https://github.com/Frezyx/open_store/blob/main/example/repo/e_ios.gif?raw=true" height = 400px>
   </td>
 <table>
 
