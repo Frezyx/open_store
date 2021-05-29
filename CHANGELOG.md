@@ -1,3 +1,7 @@
+## 0.2.2
+
+* Add gif examples
+
 ## 0.2.1
 
 * Add comments
