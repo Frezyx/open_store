@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:open_store/src/src.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 class OpenStore {
   OpenStore._();
@@ -24,8 +25,15 @@ class OpenStore {
     String? appStoreId,
     String? androidAppBundleId,
   }) async {
-    assert(appStoreId != null || androidAppBundleId != null,
-        "You must pass one of this parameters");
+    assert(
+      appStoreId != null || androidAppBundleId != null,
+      "You must pass one of this parameters",
+    );
+
+    if (kIsWeb) {
+      throw PlatformException(code: 'Platform not supported');
+    }
+
     if (Platform.isIOS) {
       await _openIos(appStoreId);
     } else if (Platform.isAndroid) {
