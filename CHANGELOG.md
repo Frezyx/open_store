@@ -1,3 +1,7 @@
+## 0.2.4
+
+* Add web running check
+
 ## 0.2.3
 
 * Change package pubspec.yaml decription
