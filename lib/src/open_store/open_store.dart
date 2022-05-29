@@ -36,29 +36,35 @@ class OpenStore {
 
     if (Platform.isIOS) {
       await _openIos(appStoreId);
-    } else if (Platform.isAndroid) {
+      return;
+    }
+    if (Platform.isAndroid) {
       await _openAndroid(androidAppBundleId);
-    } else
-      throw PlatformException(code: 'Platform not supported');
+      return;
+    }
+
+    throw PlatformException(code: 'Platform not supported');
   }
 
   Future _openAndroid(String? androidAppBundleId) async {
     if (androidAppBundleId != null) {
       await _openGooglePlay(androidAppBundleId);
-    } else
-      throw CantLaunchPageException("androidAppBundleId is not passed");
+      return;
+    }
+    throw CantLaunchPageException("androidAppBundleId is not passed");
   }
 
   Future _openIos(String? appStoreId) async {
     if (appStoreId != null) {
       await _openAppStore(appStoreId);
-    } else
-      throw CantLaunchPageException("appStoreId is not passed");
+      return;
+    }
+    throw CantLaunchPageException("appStoreId is not passed");
   }
 
-  Future<void> _openAppStore(String androidAppBundleId) async {
+  Future<void> _openAppStore(String appStoreBundleId) async {
     try {
-      final pageUri = 'https://apps.apple.com/app/id$androidAppBundleId';
+      final pageUri = 'https://apps.apple.com/app/id$appStoreBundleId';
       _opeenCommon(pageUri);
     } catch (_) {
       rethrow;
@@ -76,8 +82,9 @@ class OpenStore {
   }
 
   Future<void> _opeenCommon(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
+    final uri = Uri.parse(url);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
     } else {
       throw CantLaunchPageException('Could not launch $url');
     }
