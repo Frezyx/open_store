@@ -13,6 +13,12 @@ class OpenStore {
   /// Returns an instance using the default [OpenStore].
   static OpenStore get instance => _instance;
 
+  static const _playMarketUrl =
+      'https://play.google.com/store/apps/details?id=';
+  static const _appStoreUrlIOS = 'https://apps.apple.com/app/id';
+  static const _appStoreUrlMacOS =
+      'https://apps.apple.com/ru/app/g-app-launcher/id';
+
   /// Main method of this package
   /// Allows to open your app's page in store by platform
   ///
@@ -35,7 +41,11 @@ class OpenStore {
     }
 
     if (Platform.isIOS) {
-      await _openIos(appStoreId);
+      await _openIOS(appStoreId);
+      return;
+    }
+    if (Platform.isMacOS) {
+      await _openMacOS(appStoreId);
       return;
     }
     if (Platform.isAndroid) {
@@ -54,39 +64,43 @@ class OpenStore {
     throw CantLaunchPageException("androidAppBundleId is not passed");
   }
 
-  Future _openIos(String? appStoreId) async {
+  Future _openIOS(String? appStoreId) async {
     if (appStoreId != null) {
-      await _openAppStore(appStoreId);
+      await _openAppStoreIOS(appStoreId);
       return;
     }
     throw CantLaunchPageException("appStoreId is not passed");
   }
 
-  Future<void> _openAppStore(String appStoreBundleId) async {
-    try {
-      final pageUri = 'https://apps.apple.com/app/id$appStoreBundleId';
-      _opeenCommon(pageUri);
-    } catch (_) {
-      rethrow;
+  Future _openMacOS(String? appStoreId) async {
+    if (appStoreId != null) {
+      await _openAppStoreMacOS(appStoreId);
+      return;
     }
+    throw CantLaunchPageException("appStoreId is not passed");
+  }
+
+  Future<void> _openAppStoreIOS(String appStoreBundleId) async {
+    final pageUri = '$_appStoreUrlIOS$appStoreBundleId';
+    await _openUrl(pageUri);
+  }
+
+  Future<void> _openAppStoreMacOS(String appStoreBundleId) async {
+    final pageUri = '$_appStoreUrlMacOS$appStoreBundleId';
+    await _openUrl(pageUri);
   }
 
   Future<void> _openGooglePlay(String androidAppBundleId) async {
-    try {
-      final pageUri =
-          'https://play.google.com/store/apps/details?id=$androidAppBundleId';
-      _opeenCommon(pageUri);
-    } catch (_) {
-      rethrow;
-    }
+    final pageUri = '$_playMarketUrl$androidAppBundleId';
+    await _openUrl(pageUri);
   }
 
-  Future<void> _opeenCommon(String url) async {
+  Future<void> _openUrl(String url) async {
     final uri = Uri.parse(url);
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri);
-    } else {
-      throw CantLaunchPageException('Could not launch $url');
+      return;
     }
+    throw CantLaunchPageException('Could not launch $url');
   }
 }

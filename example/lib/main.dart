@@ -26,7 +26,7 @@ class Home extends StatelessWidget {
         child: ElevatedButton(
           onPressed: () {
             OpenStore.instance.open(
-              appStoreId: '284815942',
+              appStoreId: '1543803459',
               androidAppBundleId: 'com.google.android.googlequicksearchbox',
             );
           },
