@@ -18,6 +18,7 @@ class OpenStore {
   static const _appStoreUrlIOS = 'https://apps.apple.com/app/id';
   static const _appStoreUrlMacOS =
       'https://apps.apple.com/ru/app/g-app-launcher/id';
+  static const _microsoftStoreUrl = 'https://apps.microsoft.com/store/detail/';
 
   /// Main method of this package
   /// Allows to open your app's page in store by platform
@@ -28,8 +29,9 @@ class OpenStore {
   /// [CantLaunchPageException] will throw if you don't specify
   /// app id on Platform that you useing right now
   Future<void> open({
-    String? appStoreId,
     String? androidAppBundleId,
+    String? appStoreId,
+    String? appStoreIdMacOS,
   }) async {
     assert(
       appStoreId != null || androidAppBundleId != null,
@@ -45,7 +47,7 @@ class OpenStore {
       return;
     }
     if (Platform.isMacOS) {
-      await _openMacOS(appStoreId);
+      await _openMacOS(appStoreId, appStoreIdMacOS);
       return;
     }
     if (Platform.isAndroid) {
@@ -58,7 +60,7 @@ class OpenStore {
 
   Future _openAndroid(String? androidAppBundleId) async {
     if (androidAppBundleId != null) {
-      await _openGooglePlay(androidAppBundleId);
+      await _openUrl('$_playMarketUrl$androidAppBundleId');
       return;
     }
     throw CantLaunchPageException("androidAppBundleId is not passed");
@@ -66,33 +68,18 @@ class OpenStore {
 
   Future _openIOS(String? appStoreId) async {
     if (appStoreId != null) {
-      await _openAppStoreIOS(appStoreId);
+      await _openUrl('$_appStoreUrlIOS$appStoreId');
       return;
     }
     throw CantLaunchPageException("appStoreId is not passed");
   }
 
-  Future _openMacOS(String? appStoreId) async {
-    if (appStoreId != null) {
-      await _openAppStoreMacOS(appStoreId);
+  Future _openMacOS(String? appStoreId, String? appStoreIdMacOS) async {
+    if (appStoreId != null || appStoreIdMacOS != null) {
+      await _openUrl('$_appStoreUrlMacOS${appStoreIdMacOS ?? appStoreId}');
       return;
     }
     throw CantLaunchPageException("appStoreId is not passed");
-  }
-
-  Future<void> _openAppStoreIOS(String appStoreBundleId) async {
-    final pageUri = '$_appStoreUrlIOS$appStoreBundleId';
-    await _openUrl(pageUri);
-  }
-
-  Future<void> _openAppStoreMacOS(String appStoreBundleId) async {
-    final pageUri = '$_appStoreUrlMacOS$appStoreBundleId';
-    await _openUrl(pageUri);
-  }
-
-  Future<void> _openGooglePlay(String androidAppBundleId) async {
-    final pageUri = '$_playMarketUrl$androidAppBundleId';
-    await _openUrl(pageUri);
   }
 
   Future<void> _openUrl(String url) async {
