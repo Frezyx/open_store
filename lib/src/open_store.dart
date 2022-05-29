@@ -32,9 +32,13 @@ class OpenStore {
     String? androidAppBundleId,
     String? appStoreId,
     String? appStoreIdMacOS,
+    String? windowsProductId,
   }) async {
     assert(
-      appStoreId != null || androidAppBundleId != null,
+      appStoreId != null ||
+          androidAppBundleId != null ||
+          windowsProductId != null ||
+          appStoreIdMacOS != null,
       "You must pass one of this parameters",
     );
 
@@ -52,6 +56,10 @@ class OpenStore {
     }
     if (Platform.isAndroid) {
       await _openAndroid(androidAppBundleId);
+      return;
+    }
+    if (Platform.isWindows) {
+      await _opnWindows(windowsProductId);
       return;
     }
 
@@ -79,7 +87,17 @@ class OpenStore {
       await _openUrl('$_appStoreUrlMacOS${appStoreIdMacOS ?? appStoreId}');
       return;
     }
-    throw CantLaunchPageException("appStoreId is not passed");
+    throw CantLaunchPageException(
+      "appStoreId and appStoreIdMacOS is not passed",
+    );
+  }
+
+  Future _opnWindows(String? windowsProductId) async {
+    if (windowsProductId != null) {
+      await _openUrl('$_microsoftStoreUrl$windowsProductId');
+      return;
+    }
+    throw CantLaunchPageException("windowsProductId is not passed");
   }
 
   Future<void> _openUrl(String url) async {
