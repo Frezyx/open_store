@@ -24,7 +24,7 @@
 
 ```yaml
 dependencies:
-  open_store: ^0.2.4
+  open_store: ^0.3.0
 ```
 
 ### Add import package
@@ -39,8 +39,10 @@ Add method calling when you need open app page in store
 
 ```dart
     OpenStore.instance.open(
-        appStoreId: '284815942', // AppStore id of your app
+        appStoreId: '284815942', // AppStore id of your app for iOS
+        appStoreIdMacOS: '284815942', // AppStore id of your app for MacOS (appStoreId used as default)
         androidAppBundleId: 'com.google.android.googlequicksearchbox', // Android app bundle package name
+        windowsProductId: '9NZTWSQNTD0S' // Microsoft store id for Widnows apps
     );
 ```
 
