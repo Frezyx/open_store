@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:open_store/open_store.dart';
 
 void main() {
-  runApp(UpenStoreExample());
+  runApp(const UpenStoreExample());
 }
 
 class UpenStoreExample extends StatelessWidget {
+  const UpenStoreExample({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -13,12 +15,14 @@ class UpenStoreExample extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Home(),
+      home: const Home(),
     );
   }
 }
 
 class Home extends StatelessWidget {
+  const Home({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,10 +31,10 @@ class Home extends StatelessWidget {
           onPressed: () {
             OpenStore.instance.open(
               appStoreId: '1543803459',
-              // androidAppBundleId: 'com.google.android.googlequicksearchbox',
+              androidAppBundleId: 'com.google.android.googlequicksearchbox',
             );
           },
-          child: Text('Open store'),
+          child: const Text('Open store'),
         ),
       ),
     );
