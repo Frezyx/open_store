@@ -27,7 +27,7 @@ class Home extends StatelessWidget {
           onPressed: () {
             OpenStore.instance.open(
               appStoreId: '1543803459',
-              androidAppBundleId: 'com.google.android.googlequicksearchbox',
+              // androidAppBundleId: 'com.google.android.googlequicksearchbox',
             );
           },
           child: Text('Open store'),

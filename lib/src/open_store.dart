@@ -2,8 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/services.dart';
 import 'package:open_store/src/src.dart';
+import 'package:talker/talker.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:flutter/foundation.dart' show debugPrint, kIsWeb;
 
 class OpenStore {
   OpenStore._();
@@ -13,12 +14,17 @@ class OpenStore {
   /// Returns an instance using the default [OpenStore].
   static OpenStore get instance => _instance;
 
-  static const _playMarketUrl =
-      'https://play.google.com/store/apps/details?id=';
+  static const _playMarketUrl = '://play.google.com/store/apps/details?id=';
   static const _appStoreUrlIOS = 'https://apps.apple.com/app/id';
   static const _appStoreUrlMacOS =
       'https://apps.apple.com/ru/app/g-app-launcher/id';
   static const _microsoftStoreUrl = 'https://apps.microsoft.com/store/detail/';
+
+  final _talker = Talker(
+    loggerOutput: debugPrint,
+  );
+
+  final _platformNotSupportedException = Exception('Platform not supported');
 
   /// Main method of this package
   /// Allows to open your app's page in store by platform
@@ -42,8 +48,23 @@ class OpenStore {
       "You must pass one of this parameters",
     );
 
+    try {
+      await _open(
+        appStoreId,
+        appStoreIdMacOS,
+        androidAppBundleId,
+        windowsProductId,
+      );
+    } on Exception catch (e, st) {
+      _talker.handle(e, st);
+      rethrow;
+    }
+  }
+
+  Future<void> _open(String? appStoreId, String? appStoreIdMacOS,
+      String? androidAppBundleId, String? windowsProductId) async {
     if (kIsWeb) {
-      throw PlatformException(code: 'Platform not supported');
+      throw Exception('Platform not supported');
     }
 
     if (Platform.isIOS) {
@@ -63,7 +84,7 @@ class OpenStore {
       return;
     }
 
-    throw PlatformException(code: 'Platform not supported');
+    throw _platformNotSupportedException;
   }
 
   Future _openAndroid(String? androidAppBundleId) async {
@@ -103,7 +124,10 @@ class OpenStore {
   Future<void> _openUrl(String url) async {
     final uri = Uri.parse(url);
     if (await canLaunchUrl(uri)) {
-      await launchUrl(uri);
+      await launchUrl(
+        uri,
+        mode: LaunchMode.externalApplication,
+      );
       return;
     }
     throw CantLaunchPageException('Could not launch $url');
