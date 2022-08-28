@@ -1,3 +1,15 @@
+## 0.2.4
+
+* Add web running check
+
+## 0.2.3
+
+* Change package pubspec.yaml decription
+
+## 0.2.2
+
+* Add gif examples
+
 ## 0.2.1
 
 * Add comments

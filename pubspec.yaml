@@ -1,6 +1,6 @@
 name: open_store
-description: Simple lightweight package to open store page.
-version: 0.2.1
+description: Simple lightweight package to open store page for android and iOS GooglePlay and AppStore
+version: 0.2.4
 homepage: https://github.com/Frezyx/open_store
 
 environment:

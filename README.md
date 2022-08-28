@@ -3,8 +3,20 @@
 😎 Simple flutter package to open app page in store<br>
 😍 Without native platform code
 
+<table>
+  <td>
+    <p>Android</p>
+    <img src="https://github.com/Frezyx/open_store/blob/main/example/repo/e_android.gif?raw=true" height = 400px>
+  </td>
+  <td>
+    <p>iOS</p>
+    <img src="https://github.com/Frezyx/open_store/blob/main/example/repo/e_ios.gif?raw=true" height = 400px>
+  </td>
+<table>
+
 * How to open app page in AppStore from Flutter ?
 * How to open app page in GooglePlay from Flutter ? 
+
 
 # Getting Started
 
@@ -12,7 +24,7 @@
 
 ```yaml
 dependencies:
-  open_store: ^0.2.1
+  open_store: ^0.2.4
 ```
 
 ### Add import package
