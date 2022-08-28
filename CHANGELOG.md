@@ -1,3 +1,9 @@
+## 0.3.0
+
+* Upgrade and refactor code base
+* Upgrade packages
+* Implement exceptions handling
+
 ## 0.2.4
 
 * Add web running check
