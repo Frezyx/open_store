@@ -24,7 +24,7 @@
 
 ```yaml
 dependencies:
-  open_store: ^0.3.0
+  open_store: ^0.3.1
 ```
 
 ### Add import package
