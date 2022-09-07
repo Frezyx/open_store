@@ -14,7 +14,8 @@ class OpenStore {
   /// Returns an instance using the default [OpenStore].
   static OpenStore get instance => _instance;
 
-  static const _playMarketUrl = '://play.google.com/store/apps/details?id=';
+  static const _playMarketUrl =
+      'https://play.google.com/store/apps/details?id=';
   static const _appStoreUrlIOS = 'https://apps.apple.com/app/id';
   static const _appStoreUrlMacOS =
       'https://apps.apple.com/ru/app/g-app-launcher/id';

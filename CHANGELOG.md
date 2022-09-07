@@ -1,3 +1,7 @@
+## 0.3.1
+
+* Fix google play opening
+
 ## 0.3.0
 
 * Upgrade and refactor code base
