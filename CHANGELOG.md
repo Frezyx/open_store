@@ -1,3 +1,7 @@
+## 0.4.0
+
+* Upgrade internal packages versions
+
 ## 0.3.1
 
 * Fix google play opening
