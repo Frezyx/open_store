@@ -11,7 +11,6 @@ dependencies:
   flutter:
     sdk: flutter
   url_launcher: ^6.1.6
-  talker: ^2.0.0+1
 
 dev_dependencies:
   flutter_test:
