@@ -1,3 +1,7 @@
+## 0.5.0
+
+* Remove talker logging
+
 ## 0.4.0
 
 * Upgrade internal packages versions
