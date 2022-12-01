@@ -1,10 +1,10 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/services.dart';
 import 'package:open_store/src/src.dart';
-import 'package:talker/talker.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:flutter/foundation.dart' show debugPrint, kIsWeb;
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 class OpenStore {
   OpenStore._();
@@ -20,10 +20,6 @@ class OpenStore {
   static const _appStoreUrlMacOS =
       'https://apps.apple.com/ru/app/g-app-launcher/id';
   static const _microsoftStoreUrl = 'https://apps.microsoft.com/store/detail/';
-
-  final _talker = Talker(
-    loggerOutput: debugPrint,
-  );
 
   final _platformNotSupportedException = Exception('Platform not supported');
 
@@ -57,7 +53,7 @@ class OpenStore {
         windowsProductId,
       );
     } on Exception catch (e, st) {
-      _talker.handle(e, st);
+      log([e, st].toString());
       rethrow;
     }
   }
