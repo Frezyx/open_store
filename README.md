@@ -39,6 +39,7 @@ Add method calling when you need open app page in store
 
 ```dart
     OpenStore.instance.open(
+        appName: 'Google', // App name
         appStoreId: '284815942', // AppStore id of your app for iOS
         appStoreIdMacOS: '284815942', // AppStore id of your app for MacOS (appStoreId used as default)
         androidAppBundleId: 'com.google.android.googlequicksearchbox', // Android app bundle package name

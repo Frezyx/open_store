@@ -16,7 +16,7 @@ class OpenStore {
 
   static const _playMarketUrl =
       'https://play.google.com/store/apps/details?id=';
-  static const _appStoreUrlIOS = 'https://apps.apple.com/app/id';
+  static const _appStoreUrlIOS = 'https://apps.apple.com/app';
   static const _appStoreUrlMacOS =
       'https://apps.apple.com/ru/app/g-app-launcher/id';
   static const _microsoftStoreUrl = 'https://apps.microsoft.com/store/detail/';
@@ -32,6 +32,7 @@ class OpenStore {
   /// [CantLaunchPageException] will throw if you don't specify
   /// app id on Platform that you useing right now
   Future<void> open({
+    String? appName,
     String? androidAppBundleId,
     String? appStoreId,
     String? appStoreIdMacOS,
@@ -47,6 +48,7 @@ class OpenStore {
 
     try {
       await _open(
+        appName,
         appStoreId,
         appStoreIdMacOS,
         androidAppBundleId,
@@ -58,14 +60,18 @@ class OpenStore {
     }
   }
 
-  Future<void> _open(String? appStoreId, String? appStoreIdMacOS,
-      String? androidAppBundleId, String? windowsProductId) async {
+  Future<void> _open(
+      String? appName,
+      String? appStoreId,
+      String? appStoreIdMacOS,
+      String? androidAppBundleId,
+      String? windowsProductId) async {
     if (kIsWeb) {
       throw Exception('Platform not supported');
     }
 
     if (Platform.isIOS) {
-      await _openIOS(appStoreId);
+      await _openIOS(appName, appStoreId);
       return;
     }
     if (Platform.isMacOS) {
@@ -92,9 +98,10 @@ class OpenStore {
     throw CantLaunchPageException("androidAppBundleId is not passed");
   }
 
-  Future _openIOS(String? appStoreId) async {
+  Future _openIOS(String? appName, String? appStoreId) async {
     if (appStoreId != null) {
-      await _openUrl('$_appStoreUrlIOS$appStoreId');
+      await _openUrl('$_appStoreUrlIOS/$appName/id$appStoreId');
+      print('$_appStoreUrlIOS/$appName/id$appStoreId');
       return;
     }
     throw CantLaunchPageException("appStoreId is not passed");
