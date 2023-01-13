@@ -101,7 +101,6 @@ class OpenStore {
   Future _openIOS(String? appName, String? appStoreId) async {
     if (appStoreId != null) {
       await _openUrl('$_appStoreUrlIOS/$appName/id$appStoreId');
-      print('$_appStoreUrlIOS/$appName/id$appStoreId');
       return;
     }
     throw CantLaunchPageException("appStoreId is not passed");
